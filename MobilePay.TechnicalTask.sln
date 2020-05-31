@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogComponent", "LogComponen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{909F4373-CF2A-4C51-9D27-A164BB81C639}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogComponent.UnitTests", "LogComponent.UnitTests\LogComponent.UnitTests.csproj", "{F5ECB8CD-8CDB-4B2F-8DF8-79393C813566}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{909F4373-CF2A-4C51-9D27-A164BB81C639}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909F4373-CF2A-4C51-9D27-A164BB81C639}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{909F4373-CF2A-4C51-9D27-A164BB81C639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5ECB8CD-8CDB-4B2F-8DF8-79393C813566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5ECB8CD-8CDB-4B2F-8DF8-79393C813566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5ECB8CD-8CDB-4B2F-8DF8-79393C813566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5ECB8CD-8CDB-4B2F-8DF8-79393C813566}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

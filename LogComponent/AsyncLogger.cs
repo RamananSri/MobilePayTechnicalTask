@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using LogComponent.Models;
 
 namespace LogTest
 {
     public class AsyncLogger : ILogger
     {
+        private readonly LoggerConfiguration _loggerConfiguration;
+        
         private Thread _runThread;
         private List<LogLine> _lines = new List<LogLine>();
         private StreamWriter _writer; 
@@ -15,8 +18,9 @@ namespace LogTest
         private bool _quitWithFlush = false;
         private DateTime _curDate = DateTime.Now;
 
-        public AsyncLogger()
+        public AsyncLogger(LoggerConfiguration loggerConfiguration)
         {
+            _loggerConfiguration = loggerConfiguration;
             if (!Directory.Exists(@"C:\LogTest")) 
                 Directory.CreateDirectory(@"C:\LogTest");
 
@@ -42,7 +46,7 @@ namespace LogTest
 
         public void WriteToLog(string s)
         {
-            _lines.Add(new LogLine() { Text = s, Timestamp = DateTime.Now });
+            _lines.Add(new LogLine(s, DateTime.Now));
         }
 
         private void MainLoop()

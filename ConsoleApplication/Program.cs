@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using LogTest;
 using System.Threading;
+using Autofac;
+using ConsoleApplication.DI;
 
 namespace LogUsers
 {
@@ -8,8 +11,12 @@ namespace LogUsers
     {
         static void Main(string[] args)
         {
-            ILogger  logger = new AsyncLogger();
+            IContainer container = ContainerConfig.CreateContainer();
+            
+            var watch = Stopwatch.StartNew();
 
+            ILogger logger = container.Resolve<ILogger>();
+            
             for (int i = 0; i < 15; i++)
             {
                 logger.WriteToLog("Number with Flush: " + i);
@@ -18,7 +25,7 @@ namespace LogUsers
 
             logger.StopWithFlush();
 
-            ILogger logger2 = new AsyncLogger();
+            ILogger logger2 = container.Resolve<ILogger>();
 
             for (int i = 50; i > 0; i--)
             {
@@ -28,6 +35,9 @@ namespace LogUsers
 
             logger2.StopWithoutFlush();
 
+            watch.Stop();
+            Console.WriteLine(watch.ElapsedMilliseconds);
+            
             Console.ReadLine();
         }
     }

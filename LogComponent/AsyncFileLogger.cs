@@ -68,17 +68,14 @@ namespace LogTest
                 {
                     break;
                 }
-                catch (Exception e) //Reset the log queue to keep going
+                catch (Exception) //Reset the log queue to keep going
                 {
                     _loqQueue = new BlockingCollection<FileLogLine>();
                     continue;
                 }
-                finally
-                {
-                    cancellationTokenSource.Dispose();
-                }
             }
 
+            cancellationTokenSource.Dispose();
             Thread.Sleep(50);
         }
 
@@ -117,7 +114,7 @@ namespace LogTest
 
         private bool IsNewDay(DateTime latestLog)
         {
-            return latestLog.Date == _dateTimeProvider.Now.Date;
+            return latestLog.Date != _dateTimeProvider.Now.Date;
         }
     }
 }

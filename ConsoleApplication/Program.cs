@@ -20,7 +20,7 @@ namespace LogUsers
             for (int i = 0; i < 15; i++)
             {
                 logger.WriteToLog("Number with Flush: " + i);
-                Thread.Sleep(50);
+                Thread.Sleep(2);
             }
 
             logger.StopWithFlush();
@@ -30,7 +30,7 @@ namespace LogUsers
             for (int i = 50; i > 0; i--)
             {
                 logger2.WriteToLog("Number with No flush: " + i);
-                Thread.Sleep(20);
+                Thread.Sleep(2);
             }
 
             logger2.StopWithoutFlush();

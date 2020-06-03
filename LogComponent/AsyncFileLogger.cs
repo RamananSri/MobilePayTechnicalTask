@@ -73,10 +73,11 @@ namespace LogTest
                     _loqQueue = new BlockingCollection<FileLogLine>();
                     continue;
                 }
+
+                Thread.Sleep(50);
             }
 
-            cancellationTokenSource.Dispose();
-            Thread.Sleep(50);
+            cancellationTokenSource.Dispose();            
         }
 
         private void Log(FileLogLine line)

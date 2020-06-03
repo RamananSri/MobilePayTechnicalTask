@@ -4,6 +4,8 @@ using Autofac;
 using ConsoleApplication.DI;
 using System.Collections.Generic;
 using ConsoleApplication;
+using LogTest;
+using System.Threading;
 
 namespace LogUsers
 {
@@ -16,10 +18,25 @@ namespace LogUsers
 
             var watch = Stopwatch.StartNew();
 
-            foreach (var producer in producers)
+            var logger = container.Resolve<ILogger>();
+
+            for (int i = 0; i < 15; i++)
             {
-                producer.Produce();
-            }            
+                logger.WriteToLog("Number with Flush: " + i);
+                Thread.Sleep(50);
+            }
+
+            logger.StopWithFlush();
+
+            var logger2 = container.Resolve<ILogger>();
+
+            for (int i = 50; i > 0; i--)
+            {
+                logger2.WriteToLog("Number with No flush: " + i);
+                Thread.Sleep(20);
+            }
+
+            logger2.StopWithoutFlush();
 
             watch.Stop();
             Console.WriteLine(watch.ElapsedMilliseconds);

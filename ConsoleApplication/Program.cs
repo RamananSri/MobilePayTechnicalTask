@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using LogTest;
-using System.Threading;
 using Autofac;
 using ConsoleApplication.DI;
-using System.Collections;
 using System.Collections.Generic;
 using ConsoleApplication;
 

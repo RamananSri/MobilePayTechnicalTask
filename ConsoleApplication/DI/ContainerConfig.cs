@@ -41,6 +41,10 @@ namespace ConsoleApplication.DI
                 .Where(type => type.Name.EndsWith("Logger"))
                 .InstancePerDependency()
                 .AsImplementedInterfaces();
+
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(ProducerWithFlush)))
+                .Where(type => type.Name.StartsWith("Producer"))
+                .AsImplementedInterfaces();
         }
     }
 }

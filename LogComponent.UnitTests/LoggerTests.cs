@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using LogTest;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace LogComponent.UnitTests
         [SetUp]
         public void Setup()
         {
-            DirectoryInformation = Directory.CreateDirectory("C:\\Users\\ram\\Desktop\\Test2");
+            DirectoryInformation = new DirectoryInfo("TestLogs");
         }
 
         [TearDown]
@@ -32,6 +33,7 @@ namespace LogComponent.UnitTests
             TLogger logger = CreateLogger();
 
             logger.WriteToLog(message);
+            logger.StopWithFlush();
             
             var log = ReadLogLines().ToList();
             Assert.That(log.Any(e => e.Contains(message)));
@@ -78,8 +80,8 @@ namespace LogComponent.UnitTests
 
         protected IEnumerable<string> ReadLogLines()
         {
-            var logFilename = DirectoryInformation.GetFiles().Single().FullName;
-            return File.ReadLines(logFilename);
+            var logFilename = DirectoryInformation.GetFiles();
+            return File.ReadLines(logFilename.First().FullName);
         }
     }
 }

@@ -44,6 +44,8 @@ namespace LogComponent.UnitTests
             logger.WriteToLog("HelloWorld");
             logger.WriteToLog("HelloWorld");
 
+            logger.StopWithFlush();
+
             return DirectoryInformation.GetFiles().Length;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using LogComponent;
 using LogComponent.Models;
 using LogTest;
 using Microsoft.Extensions.Configuration;
@@ -34,7 +35,9 @@ namespace ConsoleApplication.DI
 
             containerBuilder.Register(config => new LoggerConfiguration {Filepath = logFilepath});
 
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(AsyncLogger)))
+            containerBuilder.RegisterType<SystemDateTimeProvider>().As<IDateTimeProvider>();
+
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(AsyncFileLogger)))
                 .Where(type => type.Name.EndsWith("Logger"))
                 .InstancePerDependency()
                 .AsImplementedInterfaces();
